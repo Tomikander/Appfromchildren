@@ -6,7 +6,8 @@ body {
 
   
   overflow-x: hidden;
-  overflow-y: auto;   
+  overflow-y: auto;
+  overflow: hidden;   
 
   background-image: url('./public/f2.jpg');
   background-size: cover;
@@ -57,6 +58,11 @@ body {
 }
 
 .button-wrapper {
+  text-align: center;
+  margin-top: 36px;
+}
+
+.todo-style {
   text-align: center;
   margin-top: 36px;
 }

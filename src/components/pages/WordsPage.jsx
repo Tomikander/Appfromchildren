@@ -1,6 +1,6 @@
 import React from 'react';
 import StartPage from './StartPage';
-import ThisGame from './ThisGame';
+import TodoPage from './TodoPage';
 import NewPage from './NewPage';
 import { NavLink } from 'react-router-dom';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
@@ -21,7 +21,7 @@ export default function WordsPage() {
         <div className='container'>
           <Routes>
             <Route path="/" element={<StartPage />} />
-            <Route path="todo" element={<ThisGame />} />
+            <Route path="/todo" element={<TodoPage />} />
           </Routes>
         </div>
       </div>
@@ -29,6 +29,12 @@ export default function WordsPage() {
         {location.pathname === '/' && (
         <div className='button-wrapper'>
           <NewPage />
+        </div>
+      )}
+
+      {location.pathname === '/todo' && (
+        <div className='todo-style'>
+          <TodoPage />
         </div>
       )}
     </>
