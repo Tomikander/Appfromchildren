@@ -21,7 +21,7 @@ export default function WordsPage() {
         <div className='container'>
           <Routes>
             <Route path="/" element={<StartPage />} />
-            <Route path="/todo" element={<TodoPage />} />
+            <Route path="/todo" element={null} />
           </Routes>
         </div>
       </div>

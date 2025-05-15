@@ -1,75 +1,84 @@
 import { useState } from 'react';
+import '../stylePages/todopage.css';
 
 export default function TodoPage() {
-	const[tasks, setTasks] = useState([]);
-	const[inputValue, setInputValue] = useState('');
+  const [tasks, setTasks] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
-	const addTask = () => {
-		if (inputValue.trim()) {
-			const newTask = {
-				id: Date.now(),
-				text: inputValue,
-				completed: false
-			};
+  const addTask = () => {
+    if (inputValue.trim()) {
+      const newTask = {
+        id: Date.now(),
+        text: inputValue,
+        completed: false
+      };
 
-			setTasks([...tasks, newTask]);
-			setInputValue('');
-		}
-	};
+      setTasks([...tasks, newTask]);
+      setInputValue('');
+    }
+  };
 
-	const toggleComplete = (id) => {
-		setTasks(
-			tasks.map((task) => 
-				task.id === id ? {...task, completed: !task.completed } : task
-			)
-		);
-	};
-	const deleteTask = (id) => {
-		setTasks(tasks.filter((task) => task.id !== id));
-	};
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
 
-	return (
-		<div className='container mt-5'>
-			<h2>📝 To-Do список</h2>
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
 
-			<div className='input-group mb-3'>
-				<input 
-					type="text"
+  return (
+    <div className="todo-page">
+      {/* Заголовок */}
+      <h2 className="todo-title">📝To-Do список</h2>
+
+      {/* Поле ввода */}
+      <div className="input-group mb-3">
+        <input
+          type="text"
+					name="todoInput"
           className="form-control"
           placeholder="Что нужно сделать?"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-				/>
-				<button className="btn btn-success" onClick={addTask}>
-					Добавить
-				</button>
-			</div>	
-				<ul className='list-group'>
-					{tasks.map((task) => 
-						<li 
-						key={task.id}
+        />
+        <button className="btn btn-success" onClick={addTask}>
+          Добавить
+        </button>
+      </div>
+
+      {/* Список задач */}
+      <ul className="list-group todo-list">
+        {tasks.map((task) => (
+          <li
+            key={task.id}
             className={`list-group-item d-flex justify-content-between align-items-center ${
               task.completed ? "list-group-item-success" : ""
             }`}
             onClick={() => toggleComplete(task.id)}
             style={{ cursor: "pointer", userSelect: "none" }}
-						>
-						<span>{task.text}</span>
-						<button 
-							 className="btn btn-danger btn-sm"
-							 onClick={(e) => {
-								 e.stopPropagation();
-								 deleteTask(task.id);
-							 }}
-						>
-							❌	
-						</button>
-						</li>
-					)}
-				</ul>
-				{tasks.length === 0 && (
-        <p className="mt-3 text-muted">Список дел пустой</p>
-      		)}
-		</div>
-	)
+          >
+            <span className="todo-text">{task.text}</span>
+            <button
+              className="btn btn-danger btn-sm"
+              onClick={(e) => {
+                e.stopPropagation();
+                deleteTask(task.id);
+              }}
+            >
+              ❌
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      {/* Сообщение о пустом списке */}
+      {tasks.length === 0 && (
+        <p className="empty-message">Список дел пустой</p>
+      )}
+    </div>
+  );
 }

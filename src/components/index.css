@@ -5,11 +5,10 @@ body {
   font-family: sans-serif;
 
   
-  overflow-x: hidden;
-  overflow-y: auto;
+  
   overflow: hidden;   
 
-  background-image: url('./public/f2.jpg');
+  background-image: url('/f2.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -36,14 +35,14 @@ body {
 .menu a {
   display: inline-block;
   text-decoration: none;
-  color: black;
+  color: rgb(96, 245, 9);
   font-size: 3rem;
   transition: all 0.3s ease;
 }
 
 .menu a:hover {
   transform: scale(1.1);
-  color: rgb(251, 255, 0);
+  color: rgb(54, 202, 8);
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -52,7 +51,7 @@ body {
 }
 
 .menu .active {
-  color: rgb(130, 224, 7);
+  color: rgb(95, 253, 3);
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
